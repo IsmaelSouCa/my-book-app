@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-    <div className = "p-4 m-10">
+    <div className = "min-h-screen">
       <Header />
       <Library />
     </div>
