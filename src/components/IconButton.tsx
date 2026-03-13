@@ -10,7 +10,7 @@ function IconButton({ status }: { status: boolean }) {
 
 
     return (
-        <div className="relative bottom-0 left-50" onClick={toggleFavorite}>
+        <div className="relative bottom-0 left-50 cursor-pointer w-min" onClick={toggleFavorite}>
             <svg fill={`${isFavorite ? 'orange' : 'currentColor'}`} viewBox="-1 0 19 19" xmlns="http://www.w3.org/2000/svg"
                 className="cf-icon-svg w-8"><path d="M16.417 9.583A7.917 7.917 0 1 1 8.5 1.666a7.917 
                 7.917 0 0 1 7.917 7.917zm-3.08-1.993-1.472-.174-1.485-.176-1.247-2.704c-.345-.747-.908-.747-1.253
