@@ -5,4 +5,5 @@ export interface IBook {
     published: string;
     cover: string;
     status: string;
+    isFavorite: boolean;
 }
