@@ -35,7 +35,7 @@ function Library({ books }: IProps) {
 
   }, []);
 
-  const totalPages = books.length / booksPerPage
+  const totalPages = Math.floor(books.length / booksPerPage);
   const goNext = () => {
     if (page < totalPages) {
       setPage(page + 1)
@@ -48,19 +48,26 @@ function Library({ books }: IProps) {
     }
   }
 
+  const startIndex = (page - 1) * booksPerPage;
+  const endIndex = startIndex + booksPerPage;
+  const currentBooks = books.slice(startIndex, endIndex);
+
   return (
     <>
     <div className={`grid p-4 gap-4 ${booksPerPage === 1? "grid-cols-1" : booksPerPage === 2? "grid-cols-2" : booksPerPage === 3? "grid-cols-3" : "grid-cols-4"}`}>
-        {books.map((book) => (
-          <Book 
-            ISBN={book.ISBN}
+        {currentBooks.map((book) => (
+
+           <Book
+           key={book.title}
             title={book.title}
             author={book.author}
             published={book.published}
             cover={book.cover}
             status={book.status}
             isFavorite={book.isFavorite}
-          />
+            ISBN={book.ISBN}
+           />
+           
         ))}
     </div>
     <div>
@@ -68,19 +75,17 @@ function Library({ books }: IProps) {
         <button
           onClick={goBack}
           disabled={page === 1}
-          className={`px-6 py-2 rounded-md text-white ${
-            page === 1 ? "bg-gray-400 cursor-not-allowed" : "bg-gray-800 hover:bg-gray-700"
-          }`}
+          className={`px-6 py-2 rounded-md text-white `}
         >
           Anterior
         </button>
-
+        <p>
+          Página {page} de {totalPages}
+        </p>
         <button
           onClick={goNext}
           disabled={page === totalPages}
-          className={`px-6 py-2 rounded-md text-white ${
-            page === totalPages ? "bg-gray-400 cursor-not-allowed" : "bg-gray-800 hover:bg-gray-700"
-          }`}
+          className={`px-6 py-2 rounded-md text-white`}
         >
           Siguiente
         </button>
