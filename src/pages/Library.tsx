@@ -13,6 +13,11 @@ function Library({ books }: IProps) {
   const [page, setPage] = useState(1);
   const [booksPerPage, setBooksPerPage] = useState(4);
 
+  const [searchText, setSearchText] = useState<string>('');
+  const [statusFilter, setStatusFilter] = useState<'todos' | 'leido' | 'pendiente'>('todos');
+
+  
+
   useEffect(()=>{
 
     function updateBooksPerPage(){
@@ -54,6 +59,18 @@ function Library({ books }: IProps) {
 
   return (
     <>
+    <div className={`bg-white ${booksPerPage === 1? 'flex-col h-19 w-64 justify-around': 'h-11 justify-around'} flex items-center rounded-xl m-auto`}>
+      <input 
+        className='bg-[#ededed] rounded-3xl w-48 text-center'
+        type="text" 
+        placeholder='Buscar por título...'
+      />
+      <select name="filter" id="filter" className='bg-white rounded w-32'>
+        <option value="todos">Todos</option>
+        <option value="pendiente">Pendiente</option>
+        <option value="leido">Leído</option>
+      </select>
+    </div>
     <div className={`grid p-4 gap-4 ${booksPerPage === 1? "grid-cols-1" : booksPerPage === 2? "grid-cols-2" : booksPerPage === 3? "grid-cols-3" : "grid-cols-4"}`}>
         {currentBooks.map((book) => (
 
@@ -70,26 +87,23 @@ function Library({ books }: IProps) {
            
         ))}
     </div>
-    <div>
-      <div className="flex justify-center gap-4">
-        <button
-          onClick={goBack}
-          disabled={page === 1}
-          className={`px-6 py-2 rounded-md text-white `}
-        >
-          Anterior
-        </button>
-        <p>
-          Página {page} de {totalPages}
-        </p>
-        <button
-          onClick={goNext}
-          disabled={page === totalPages}
-          className={`px-6 py-2 rounded-md text-white`}
-        >
-          Siguiente
-        </button>
-      </div>
+    <div className={`${booksPerPage === 1? "flex-col" : "flex"} p-4 justify-center items-center gap-12`}>
+      <button
+        onClick={goBack}
+        disabled={page === 1}
+        className={`px-6 py-2 rounded-md text-white ${booksPerPage === 1? "w-64" : "w-32"}`}
+      >
+        Anterior
+      </button>
+      <p>
+        ({page} / {totalPages})
+      </p>
+      <button
+        onClick={goNext}
+        disabled={page === totalPages}
+        className={`px-6 py-2 rounded-md text-white ${booksPerPage === 1? "w-64" : "w-32"}`}>
+        Siguiente
+      </button>
     </div>
     </>
   );

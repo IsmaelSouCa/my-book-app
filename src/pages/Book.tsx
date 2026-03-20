@@ -12,7 +12,7 @@ function Book(book : IBook) {
   }
 
   return (
-    <div className="bg-white shadow-md rounded-lg m-4 w-64 flex flex-col">
+    <div className="bg-white shadow-md rounded-lg w-64 flex flex-col">
       <div className="h-52">
         <img 
           src={book.cover} 

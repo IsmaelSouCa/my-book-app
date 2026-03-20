@@ -7,16 +7,16 @@ function App() {
 
   const books: IBook[] = [
   {
-    ISBN: '',
+    ISBN: '9788423353941', // Edición Áncora & Delfín / Destino
     title: 'El Cuarto Mono',
     author: 'J. D. Barker',
     published: '27/06/2017',
     cover: 'https://m.media-amazon.com/images/I/61xfFSgNfBL.jpg',
     status: 'Pendiente',
-    isFavorite: false
+    isFavorite: false,
   },
   {
-    ISBN: '',
+    ISBN: '9788491292661',
     title: 'La Chica de Nieve',
     author: 'Javier Castillo',
     published: '12/03/2020',
@@ -25,7 +25,7 @@ function App() {
     isFavorite: false
   },
   {
-    ISBN: '',
+    ISBN: '9788491294283',
     title: 'La Asistenta',
     author: 'Freida McFadden',
     published: '05/10/2023',
@@ -34,7 +34,7 @@ function App() {
     isFavorite: false
   },
   {
-    ISBN: '',
+    ISBN: '9788417809904',       // Edición tapa dura Plan B Ediciones
     title: 'Así es la puta vida',
     author: 'Jordi Wild',
     published: '03/11/2022',
@@ -43,14 +43,14 @@ function App() {
     isFavorite: true
   },
   {
-    ISBN: '',
+    ISBN: '9788427044982',
     title: 'Los secretos de YouTube',
     author: 'TheGrefg',
     published: '27/11/2018',
     cover: 'https://m.media-amazon.com/images/I/61RwktFr5NL.jpg',
     status: 'Pendiente',
     isFavorite: true
-  }, 
+  },
     {
     ISBN: '9780307743657',
     title: 'La chica del tren',
@@ -280,7 +280,7 @@ function App() {
 
   return (
     <>
-    <div className = "min-h-screen">
+    <div className='h-full'>
       <Header />
       <Library books={books} />
     </div>
