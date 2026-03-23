@@ -67,15 +67,15 @@ function Library({ books }: IProps) {
 
   return (
     <>
-    <div className={`bg-white ${booksPerPage === 1? 'flex-col h-19 w-64 justify-around': 'h-11 justify-around'} flex items-center rounded-xl m-auto transition-all duration-300 mb-4`}>
+    <div className={`bg-white ${booksPerPage === 1? 'flex-col h-19 w-64 justify-around': 'h-11 justify-between px-4'} flex items-center rounded-xl m-auto transition-all duration-300 mb-4`}>
       <input 
-        className='bg-[#ededed] rounded-3xl text-center w-56'
+        className={`bg-[#ededed] px-4 py-1 m-2 ${booksPerPage === 1? 'w-48 rounded-3xl': 'w-full max-w-200 rounded-l-3xl rounded-r-xl'}`}
         type="text" 
         placeholder='Buscar por título...'
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <select name="filter" id="filter" className='bg-white rounded w-32' value={statusFilter} onChange={(e) => setStatusFilter(e.target.value as 'todos' | 'Leído' | 'Pendiente')}>
+      <select name="filter" id="filter" className='bg-white rounded hover:cursor-pointer w-32' value={statusFilter} onChange={(e) => setStatusFilter(e.target.value as 'todos' | 'Leído' | 'Pendiente')}>
         <option value="todos">Todos</option>
         <option value="Pendiente">Pendiente</option>
         <option value="Leído">Leído</option>
@@ -102,7 +102,7 @@ function Library({ books }: IProps) {
         onClick={goBack}
         disabled={page === 1}
         className={`px-6 py-2 rounded-md text-white ${booksPerPage === 1? "w-64" : "w-32"} 
-        ${page === 1? "bg-gray-400": "bg-gray-800 hover:bg-gray-700 transition-all duration-300 hover:cursor-pointer"}`}
+        ${page === 1? "bg-gray-400 hover:cursor-not-allowed": "bg-gray-800 hover:bg-gray-700 transition-all duration-300 hover:cursor-pointer"}`}
       >
         Anterior
       </button>
@@ -113,7 +113,7 @@ function Library({ books }: IProps) {
         onClick={goNext}
         disabled={page === totalPages}
         className={`px-6 py-2 rounded-md text-white ${booksPerPage === 1? "w-64" : "w-32"}
-        ${page === totalPages? "bg-gray-400": "bg-gray-800 hover:bg-gray-700 transition-all duration-300 hover:cursor-pointer"}`}>
+        ${page === totalPages? "bg-gray-400 hover:cursor-not-allowed": "bg-gray-800 hover:bg-gray-700 transition-all duration-300 hover:cursor-pointer"}`}>
         Siguiente
       </button>
     </div>
