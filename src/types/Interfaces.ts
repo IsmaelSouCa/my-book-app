@@ -4,6 +4,6 @@ export interface IBook {
     author: string;
     published: string;
     cover: string;
-    status: string;
+    status: 'Leído' | 'Pendiente';
     isFavorite: boolean;
 }

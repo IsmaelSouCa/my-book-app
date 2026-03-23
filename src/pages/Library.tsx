@@ -14,9 +14,17 @@ function Library({ books }: IProps) {
   const [booksPerPage, setBooksPerPage] = useState(4);
 
   const [searchText, setSearchText] = useState<string>('');
-  const [statusFilter, setStatusFilter] = useState<'todos' | 'leido' | 'pendiente'>('todos');
+  const [statusFilter, setStatusFilter] = useState<'todos' | 'Leído' | 'Pendiente'>('todos');
 
-  
+  const filteredBooks = books.filter((book) => {
+    const matchesSearchText = book.title.toLowerCase().includes(searchText.toLowerCase());
+    const matchesStatusFilter = statusFilter === 'todos' || book.status === statusFilter;
+    return matchesSearchText && matchesStatusFilter;
+  });
+
+  useEffect(() => {
+    setPage(1);
+  }, [searchText, statusFilter]);
 
   useEffect(()=>{
 
@@ -40,7 +48,7 @@ function Library({ books }: IProps) {
 
   }, []);
 
-  const totalPages = Math.floor(books.length / booksPerPage);
+  const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
   const goNext = () => {
     if (page < totalPages) {
       setPage(page + 1)
@@ -55,7 +63,7 @@ function Library({ books }: IProps) {
 
   const startIndex = (page - 1) * booksPerPage;
   const endIndex = startIndex + booksPerPage;
-  const currentBooks = books.slice(startIndex, endIndex);
+  const currentBooks = filteredBooks.slice(startIndex, endIndex);
 
   return (
     <>
@@ -64,11 +72,13 @@ function Library({ books }: IProps) {
         className='bg-[#ededed] rounded-3xl w-48 text-center'
         type="text" 
         placeholder='Buscar por título...'
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
       />
-      <select name="filter" id="filter" className='bg-white rounded w-32'>
+      <select name="filter" id="filter" className='bg-white rounded w-32' value={statusFilter} onChange={(e) => setStatusFilter(e.target.value as 'todos' | 'Leído' | 'Pendiente')}>
         <option value="todos">Todos</option>
-        <option value="pendiente">Pendiente</option>
-        <option value="leido">Leído</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Leído">Leído</option>
       </select>
     </div>
     <div className={`grid p-4 gap-4 ${booksPerPage === 1? "grid-cols-1" : booksPerPage === 2? "grid-cols-2" : booksPerPage === 3? "grid-cols-3" : "grid-cols-4"}`}>
