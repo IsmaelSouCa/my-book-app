@@ -67,9 +67,9 @@ function Library({ books }: IProps) {
 
   return (
     <>
-    <div className={`bg-white ${booksPerPage === 1? 'flex-col h-19 w-64 justify-around': 'h-11 justify-around'} flex items-center rounded-xl m-auto`}>
+    <div className={`bg-white ${booksPerPage === 1? 'flex-col h-19 w-64 justify-around': 'h-11 justify-around'} flex items-center rounded-xl m-auto transition-all duration-300 mb-4`}>
       <input 
-        className='bg-[#ededed] rounded-3xl w-48 text-center'
+        className='bg-[#ededed] rounded-3xl text-center w-56'
         type="text" 
         placeholder='Buscar por título...'
         value={searchText}
@@ -101,7 +101,8 @@ function Library({ books }: IProps) {
       <button
         onClick={goBack}
         disabled={page === 1}
-        className={`px-6 py-2 rounded-md text-white ${booksPerPage === 1? "w-64" : "w-32"}`}
+        className={`px-6 py-2 rounded-md text-white ${booksPerPage === 1? "w-64" : "w-32"} 
+        ${page === 1? "bg-gray-400": "bg-gray-800 hover:bg-gray-700 transition-all duration-300 hover:cursor-pointer"}`}
       >
         Anterior
       </button>
@@ -111,7 +112,8 @@ function Library({ books }: IProps) {
       <button
         onClick={goNext}
         disabled={page === totalPages}
-        className={`px-6 py-2 rounded-md text-white ${booksPerPage === 1? "w-64" : "w-32"}`}>
+        className={`px-6 py-2 rounded-md text-white ${booksPerPage === 1? "w-64" : "w-32"}
+        ${page === totalPages? "bg-gray-400": "bg-gray-800 hover:bg-gray-700 transition-all duration-300 hover:cursor-pointer"}`}>
         Siguiente
       </button>
     </div>

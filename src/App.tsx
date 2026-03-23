@@ -7,7 +7,7 @@ function App() {
 
   const books: IBook[] = [
   {
-    ISBN: '9788423353941', // Edición Áncora & Delfín / Destino
+    ISBN: '9788423353941',
     title: 'El Cuarto Mono',
     author: 'J. D. Barker',
     published: '27/06/2017',
@@ -34,7 +34,7 @@ function App() {
     isFavorite: false
   },
   {
-    ISBN: '9788417809904',       // Edición tapa dura Plan B Ediciones
+    ISBN: '9788417809904',
     title: 'Así es la puta vida',
     author: 'Jordi Wild',
     published: '03/11/2022',
