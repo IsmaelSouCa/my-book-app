@@ -283,7 +283,7 @@ function App() {
     <div className='h-full'>
       <Header text="My Book App" />
       <Library books={books} />
-      <Header text="https://my-book-qbt32zfq7-ismaelsoucas-projects.vercel.app/" isFooter={true} />
+      <h2>https://my-book-app-phi.vercel.app/</h2>
     </div>
     </>
   )
